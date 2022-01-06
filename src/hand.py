@@ -1,9 +1,25 @@
 
 
+##### Class represeting a BlackJack Hand ######
+"""
+    Attributes of a Hand
+    - a collection of cards
+    - has a score
+    - handsize
+
+    Required functionality
+    - add a card 
+    - return the it's score
+    - reveal it's cards
+
+
+"""
+
+
 class Hand:
 
-    def __init__(self, cards):
-        self.cards = cards
+    def __init__(self):
+        self.cards = []
         self.score = 0
         self.hand_size = len(self.cards)
 
@@ -13,55 +29,19 @@ class Hand:
     def get_score(self):
         local_score = 0
         aces = 0
+
+        # Sum card values of hand
         for c in self.cards:
             if c[0] == "A":
                 aces += 1
             local_score += c[1]
 
-        self.score = self.handle_aces(aces, local_score)
+        # Handle Aces if Bust
+        while(local_score > 21 and aces > 0):
+            local_score -= 10
+            aces -= 1
+        self.score = local_score
         return self.score
-
-    @staticmethod
-    def handle_aces(aces, local_score):
-        local_score -= (aces * 11)
-        # handle aces as 1s and 11s
-        if aces == 1:
-            if local_score <= 10:
-                local_score += 11
-                return local_score
-
-            elif local_score <= 20:
-                local_score += 1
-                return local_score
-
-        elif aces == 2:
-            if local_score <= 9:
-                local_score += 12
-                return local_score
-
-            elif local_score <= 19:
-                local_score += 2
-                return local_score
-
-        elif aces == 3:
-            if local_score <= 8:
-                local_score += 13
-                return local_score
-
-            elif local_score <= 18:
-                local_score += 3
-                return local_score
-
-        elif aces == 4:
-            if local_score <= 7:
-                local_score += 14
-                return local_score
-
-            elif local_score <= 17:
-                local_score += 4
-                return local_score
-        else:
-            return local_score
 
     def reveal(self):
         for c in self.cards:

@@ -27,20 +27,27 @@ class DeckTestCase(unittest.TestCase):
 
     # test shuffle works
     def test_deck_shuffle(self):
+        # preshuffle deck vs post shuffle
         first_card = self.deck.cards[0]
         self.assertEqual(("2", 2), first_card)
         self.deck.shuffle()
         self.assertNotEqual(first_card, self.deck.cards[0])
 
-    # test deal initial hand deals 2 cards
+    # test deal opening hand deals 2 cards
     def test_deal_opening_hand(self):
         number_of_cards = len(self.deck.deal_opening_hand())
-        self.assertIsNotNone(number_of_cards)
         self.assertEqual(number_of_cards, 2)
 
     # check each card only has 4 instances
-    def test_four_twos(self):
-        self.assertEqual(self.deck.cards.count(("2", 2)), 4)
+    def test_four_of_each(self):
+
+        cards = [("2", 2), ("3", 3), ("4", 4),
+                 ("5", 5), ("6", 6), ("7", 7),
+                 ("8", 8), ("9", 9), ("10", 10),
+                 ("J", 10), ("Q", 10), ("K", 10),
+                 ("A", 11)]
+        for card in cards:
+            self.assertEqual(self.deck.cards.count(card), 4)
 
 if __name__ == '__main__':
     unittest.main()

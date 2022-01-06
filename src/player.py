@@ -1,15 +1,31 @@
+from .hand import Hand
 
-#from hand import Hand
+
+##### Class represeting a BlackJack Player ######
+"""
+    Attributes of a player
+    - has a hand of cards
+
+    Required functionality
+    - Receive a card
+    - Request cards
+    - Stand
+    - Evaluate hand
+    - Reveal hand
+
+"""
 
 
-class Player:
+class Player(object):
 
-    def __init__(self, opening_hand):
-
-        self.hand = opening_hand
+    def __init__(self):
+        self.hand = Hand()
 
     # def update_hand(self):
     #     self.hand.update()
+
+    def receive_card(self, card):
+        self.hand.add_card(card)
 
     def hit(self):
         if self.is_hand_valid():
@@ -17,10 +33,11 @@ class Player:
 
     def stand(self):
         if self.is_hand_valid():
-            return self.evaluate_hand()
+            # Evaluate final score and return final score
+            self.hand.score = self.evaluate_hand()
+            return self.hand.score
 
     def is_hand_valid(self):
-        print(type(self.evaluate_hand()))
         if self.evaluate_hand() <= 21:
             return True
         else:
