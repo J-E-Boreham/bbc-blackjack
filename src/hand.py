@@ -25,6 +25,7 @@ class Hand:
 
     def add_card(self, card):
         self.cards.append(card)
+        self.hand_size = len(self.cards)
 
     def get_score(self):
         local_score = 0

@@ -27,7 +27,7 @@ from .player import Player
 class Dealer(Player):
 
     def __init__(self, deck):
-        super().__init__()
+        super().__init__("Dealer")
         self.deck = deck
 
     def shuffle(self):
@@ -35,3 +35,7 @@ class Dealer(Player):
 
     def deal_card(self):
         return self.deck.deal_card()
+
+    def deal_opening_hand(self):
+
+        return self.deck.deal_opening_hand()

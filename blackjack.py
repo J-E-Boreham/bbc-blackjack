@@ -4,7 +4,13 @@ from src.dealer import Dealer
 from src.player import Player
 
 
-def check_scores(dealer_score, player_score):
+def compare_scores(dealer, player1):
+    if player1.hand.score > dealer.hand.score:
+        print("Player1 wins!")
+    elif player1.hand.score == dealer.hand.score:
+        print("It's a draw play again")
+    else:
+        print("The house wins again...")
 
 
 def play():
@@ -12,7 +18,7 @@ def play():
     # Initialise game - Create a deck a dealer and a player
     game_deck = Deck()
     dealer = Dealer(game_deck)
-    player1 = Player()
+    player1 = Player("Bob")
     dealer.shuffle()
 
     # Deal opening hand
@@ -23,43 +29,51 @@ def play():
 
     game_over = False
 
+    players = [player1, dealer]
+    active_player = 0
+
     while not game_over:
 
-        print("Dealer score: = %s" % dealer.evaluate_hand())
-        print("Player score: = %s" % player1.evaluate_hand())
+        passive_player = (active_player + 1) % 2
+        print(players[active_player].name + "'s score: = %s" %
+              players[active_player].evaluate_hand())
+        # print("Player score: = %s" % player1.evaluate_hand())
 
         # If not bust offer player another card
-        if player1.is_hand_valid():
+        if players[active_player].is_hand_valid():
 
             # stick or hit
             soh = input("\nhit or stand?\n")
 
             # try catch invalid input error
-            if soh == "hit":
-                if player1.hit():
+            if (soh == "hit"):
+                if players[active_player].hit():
                     card = dealer.deal_card()
                     print("card just dealt, ", card)
 
-                    player1.receive_card(card)
-                    print("Updated Score is %s" % player1.evaluate_hand())
+                    players[active_player].receive_card(card)
+                    print(players[active_player].name + " updated Score is %s" %
+                          players[active_player].evaluate_hand())
 
             elif soh == "stand":
 
-                player1.stand()
-                print("Player's final score is %s" % player1.score)
-                player1.show_hand()
+                players[active_player].stand()
+                print(players[active_player].name + "'s final score is %s" %
+                      players[active_player].evaluate_hand())
+                players[active_player].show_hand()
+
+                # Game always finishes on the dealer
+                if players[active_player].name == "Dealer":
+                    compare_scores(dealer, player1)
+                    game_over = True
+
+                active_player = passive_player
 
         else:
             game_over = True
-            player1.show_hand()
-            print("BUST! Your Score is %s" % player1.evaluate_hand())
-
-    # if player1.finalscore > dealer.finalscore:
-    #     print("Player1 wins!")
-    # elif player1.finalscore == dealer.finalscore:
-    #     print("It's a draw play again")
-    # else:
-    #     print("The house wins again...")
+            players[active_player].show_hand()
+            print("\nBUST! Your Score is %s" %
+                  players[active_player].evaluate_hand())
 
 
 if __name__ == '__main__':

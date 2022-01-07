@@ -18,9 +18,9 @@ from .hand import Hand
 
 class Player(object):
 
-    def __init__(self):
+    def __init__(self, name):
         self.hand = Hand()
-
+        self.name = name
     # def update_hand(self):
     #     self.hand.update()
 

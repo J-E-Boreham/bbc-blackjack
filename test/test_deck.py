@@ -1,5 +1,7 @@
 import unittest
+import copy
 from src.deck import Deck
+from src.dealer import Dealer
 
 #~~~~~~~~~~~~ Unit testing ~~~~~~~~~~~~~~#
 # 3 As
@@ -12,6 +14,7 @@ class DeckTestCase(unittest.TestCase):
 
     def setUp(self):  # this method will be run before each test
         self.deck = Deck()
+        self.dealer = Dealer(self.deck)
 
     def tearDown(self):  # this method will be run after each tests
         pass
@@ -21,22 +24,25 @@ class DeckTestCase(unittest.TestCase):
         number_of_cards = len(self.deck.cards)
         self.assertEqual(number_of_cards, 52)
 
-    def test_deck_not_empty(self):
-        number_of_cards = len(self.deck.cards)
-        self.assertIsNotNone(number_of_cards)
-
     # test shuffle works
     def test_deck_shuffle(self):
         # preshuffle deck vs post shuffle
-        first_card = self.deck.cards[0]
-        self.assertEqual(("2", 2), first_card)
-        self.deck.shuffle()
-        self.assertNotEqual(first_card, self.deck.cards[0])
+        preshuffle_deck = [("2", 2), ("3", 3), ("4", 4),
+                           ("5", 5), ("6", 6), ("7", 7),
+                           ("8", 8), ("9", 9), ("10", 10),
+                           ("J", 10), ("Q", 10), ("K", 10),
+                           ("A", 11)] * 4
+        deck_to_shuffle = self.deck.cards
 
-    # test deal opening hand deals 2 cards
-    def test_deal_opening_hand(self):
-        number_of_cards = len(self.deck.deal_opening_hand())
-        self.assertEqual(number_of_cards, 2)
+        self.assertEqual(preshuffle_deck, deck_to_shuffle)
+        self.deck_to_shuffle.shuffle()
+        self.assertNotEqual(preshuffle_deck, deck_to_shuffle)
+
+    # test dealing depleates deck
+    def test_deck_depleation(self):
+
+        self.dealer.deal_opening_hand()
+        self.assertEqual(len(dealer.deck.cards), 50)
 
     # check each card only has 4 instances
     def test_four_of_each(self):
@@ -46,6 +52,7 @@ class DeckTestCase(unittest.TestCase):
                  ("8", 8), ("9", 9), ("10", 10),
                  ("J", 10), ("Q", 10), ("K", 10),
                  ("A", 11)]
+
         for card in cards:
             self.assertEqual(self.deck.cards.count(card), 4)
 
