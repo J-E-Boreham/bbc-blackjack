@@ -30,6 +30,8 @@ class Player(object):
     def hit(self):
         if self.is_hand_valid():
             return True
+        else:
+            return False
 
     def stand(self):
         if self.is_hand_valid():

@@ -32,17 +32,17 @@ class DeckTestCase(unittest.TestCase):
                            ("8", 8), ("9", 9), ("10", 10),
                            ("J", 10), ("Q", 10), ("K", 10),
                            ("A", 11)] * 4
-        deck_to_shuffle = self.deck.cards
+        deck_to_shuffle = self.deck
 
-        self.assertEqual(preshuffle_deck, deck_to_shuffle)
-        self.deck_to_shuffle.shuffle()
+        self.assertEqual(preshuffle_deck, deck_to_shuffle.cards)
+        deck_to_shuffle.shuffle()
         self.assertNotEqual(preshuffle_deck, deck_to_shuffle)
 
     # test dealing depleates deck
     def test_deck_depleation(self):
 
         self.dealer.deal_opening_hand()
-        self.assertEqual(len(dealer.deck.cards), 50)
+        self.assertEqual(len(self.dealer.deck.cards), 50)
 
     # check each card only has 4 instances
     def test_four_of_each(self):

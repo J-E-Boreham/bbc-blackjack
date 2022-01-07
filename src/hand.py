@@ -21,11 +21,11 @@ class Hand:
     def __init__(self):
         self.cards = []
         self.score = 0
-        self.hand_size = len(self.cards)
+        self.size = len(self.cards)
 
     def add_card(self, card):
         self.cards.append(card)
-        self.hand_size = len(self.cards)
+        self.size = len(self.cards)
 
     def get_score(self):
         local_score = 0
