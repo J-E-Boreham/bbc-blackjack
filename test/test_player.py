@@ -57,9 +57,7 @@ class PlayerTestCase(unittest.TestCase):
         if(test_player.hit()):
             test_player.receive_card(test_dealer.deal_card())
             hand_size_post_hit = test_player.hand.size
-            print(hand_size_post_hit)
             score_post_hit = test_player.evaluate_hand()
-            print(score_post_hit)
 
         # Assert
         self.assertEqual(hand_size_post_hit, hand_size_pre_hit + 1)

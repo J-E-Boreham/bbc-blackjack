@@ -6,11 +6,11 @@ from src.player import Player
 
 def compare_scores(dealer, player1):
     if player1.hand.score > dealer.hand.score:
-        print("Player1 wins!")
+        print("\n" + player1.name + " wins!")
     elif player1.hand.score == dealer.hand.score:
-        print("It's a draw play again")
+        print("\nIt's a draw split the pot and play again")
     else:
-        print("The house wins again...")
+        print("\nThe house wins again...")
 
 
 def play():
@@ -35,7 +35,7 @@ def play():
     while not game_over:
 
         passive_player = (active_player + 1) % 2
-        print(players[active_player].name + "'s score: = %s" %
+        print("\n" + players[active_player].name + "'s score: = %s" %
               players[active_player].evaluate_hand())
         # print("Player score: = %s" % player1.evaluate_hand())
 
@@ -49,7 +49,7 @@ def play():
             if (soh == "hit"):
                 if players[active_player].hit():
                     card = dealer.deal_card()
-                    print("card just dealt, ", card)
+                    print("card just dealt, ", card, "\n")
 
                     players[active_player].receive_card(card)
                     print(players[active_player].name + " updated Score is %s" %
@@ -58,7 +58,7 @@ def play():
             elif soh == "stand":
 
                 players[active_player].stand()
-                print(players[active_player].name + "'s final score is %s" %
+                print(players[active_player].name + "'s final score is %s \n" %
                       players[active_player].evaluate_hand())
                 players[active_player].show_hand()
 
@@ -72,8 +72,9 @@ def play():
         else:
             game_over = True
             players[active_player].show_hand()
-            print("\nBUST! Your Score is %s" %
+            print("\nBUST! " + players[active_player].name + " Your Score is %s" %
                   players[active_player].evaluate_hand())
+            print(players[passive_player].name + " is the winner!")
 
 
 if __name__ == '__main__':
