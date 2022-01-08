@@ -39,7 +39,7 @@ class DeckTestCase(unittest.TestCase):
         self.assertNotEqual(preshuffle_deck, deck_to_shuffle)
 
     # test dealing depleates deck
-    def test_deck_depleation(self):
+    def test_deck_depletion(self):
 
         self.dealer.deal_opening_hand()
         self.assertEqual(len(self.dealer.deck.cards), 50)

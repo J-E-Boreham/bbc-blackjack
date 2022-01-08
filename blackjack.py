@@ -12,10 +12,10 @@ def compare_scores(dealer, player1):
     else:
         print("\nThe house wins again...")
 
+# Take a list of number of players
 
-def play():
 
-    # Initialise game - Create a deck a dealer and a player
+def set_up_game()
     game_deck = Deck()
     dealer = Dealer(game_deck)
     player1 = Player("Bob")
@@ -26,6 +26,13 @@ def play():
     dealer.receive_card(dealer.deal_card())
     player1.receive_card(dealer.deal_card())
     dealer.receive_card(dealer.deal_card())
+
+    return dealer, player1
+
+
+def play():
+
+    set_up_game()
 
     game_over = False
 
@@ -46,7 +53,7 @@ def play():
             soh = input("\nhit or stand?\n")
 
             # try catch invalid input error
-            if (soh == "hit"):
+            if soh == "hit":
                 if players[active_player].hit():
                     card = dealer.deal_card()
                     print("card just dealt, ", card, "\n")
@@ -75,6 +82,15 @@ def play():
             print("\nBUST! " + players[active_player].name + " Your Score is %s" %
                   players[active_player].evaluate_hand())
             print(players[passive_player].name + " is the winner!")
+
+            play_again = input("Would you like you play again? Y/N")
+
+            if play_again.Upper() == "Y":
+                set_up_game()
+                active_player
+                game_over = False
+            else:
+                print("Thanks for playing!")
 
 
 if __name__ == '__main__':
