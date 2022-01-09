@@ -34,8 +34,11 @@ class Dealer(Player):
         self.deck.shuffle()
 
     def deal_card(self):
-        return self.deck.deal_card()
+        return self.deck.cards.pop()
 
     def deal_opening_hand(self):
-
         return self.deck.deal_opening_hand()
+
+    def show_initial_hand(self):
+        print("Dealer's face up card is: " + self.hand.cards[0][0] + "\n")
+

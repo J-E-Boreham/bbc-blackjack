@@ -29,9 +29,4 @@ class Deck:
     def deal_card(self):
         return self.cards.pop()
 
-    def deal_opening_hand(self):
-        opening = []
-        opening.append(self.cards.pop())
-        opening.append(self.cards.pop())
 
-        return opening

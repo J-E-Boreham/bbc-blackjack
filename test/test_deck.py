@@ -41,8 +41,8 @@ class DeckTestCase(unittest.TestCase):
     # test dealing depleates deck
     def test_deck_depletion(self):
 
-        self.dealer.deal_opening_hand()
-        self.assertEqual(len(self.dealer.deck.cards), 50)
+        self.dealer.deal_card()
+        self.assertEqual(len(self.dealer.deck.cards), 51)
 
     # check each card only has 4 instances
     def test_four_of_each(self):
