@@ -3,7 +3,7 @@ import random
 ##### Class represeting a BlackJack Deck ######
 """
     Attributes of a Deck
-    - 52 cards 4 of each, ignoring suit for blackjack
+    - 52 cards, 4 of each, ignoring suit for blackjack
 
     Required functionality
     - to be shuffled

@@ -20,6 +20,7 @@ from src.player import Player
     Dealer specific
     -shuffle deck
     -deal card
+    -show initial hand - one card
 
 """
 
@@ -41,4 +42,3 @@ class Dealer(Player):
 
     def show_initial_hand(self):
         print("Dealer's face up card is: " + self.hand.cards[0][0] + "\n")
-

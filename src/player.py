@@ -54,11 +54,11 @@ class Player(object):
         player_input = input("\nhit or stand?\n")
         player_input.strip()
 
-        # try catch invalid input error
+        # Catch invalid input error
         if player_input.lower() == "hit":
             return Moves.HIT
         if player_input.lower() == "stand":
             return Moves.STAND
         else:
             print("Invalid move selected, please try again")
-            self.take_turn()
+            return self.take_turn()

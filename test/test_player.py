@@ -37,14 +37,13 @@ class PlayerTestCase(unittest.TestCase):
     # Then I receive another card
     # And my score is updated
     def test_hit_on_valid_hand(self):
-
+        # Arrange
         self.player.receive_card(("10", 10))
-        self.dealer.receive_card(("5", 5))
+        self.player.receive_card(("5", 5))
         hand_size_pre_hit = self.player.hand.size
         score_pre_hit = self.player.evaluate_hand()
 
         # Act
-        # Does hit need to somehow receive a card in the function
         self.player.hit(self.dealer)
         hand_size_post_hit = self.player.hand.size
         score_post_hit = self.player.evaluate_hand()
