@@ -51,7 +51,7 @@ def compare_scores(players):
 
 def all_players_bust(players):
     non_dealer_players = players[:-1]
-    all([True if player.score > 21 else False for player in non_dealer_players])
+    all([True if player.hand.score > 21 else False for player in non_dealer_players])
 
 
 def play():
